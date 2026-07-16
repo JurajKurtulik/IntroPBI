@@ -184,7 +184,7 @@
       <div class="query-lab reveal delay-1">
         <div class="messy-table" aria-label="Interactive messy data table">
           <table>
-            <thead><tr><th>Order</th><th>Date</th><th>Sales</th><th>Region</th><th>Noise</th></tr></thead>
+            <thead id="cleanHead"><tr><th>Order</th><th>Date</th><th>Sales</th><th>Region</th><th>Noise</th></tr></thead>
             <tbody id="cleanRows"></tbody>
           </table>
         </div>
@@ -214,14 +214,17 @@
         </div>
         <svg class="schema-lines" viewBox="0 0 1000 560" aria-hidden="true">
           <defs>
-            <marker id="schemaArrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <marker id="schemaArrow" class="schema-marker" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z"></path>
+            </marker>
+            <marker id="schemaArrowActive" class="schema-marker active-marker" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
               <path d="M 0 0 L 10 5 L 0 10 z"></path>
             </marker>
           </defs>
-          <path class="relationship rel-date" data-filter="Date" d="M300 154 C350 154 352 238 390 250"/>
-          <path class="relationship rel-region" data-filter="Region" d="M700 154 C650 154 648 238 610 250"/>
-          <path class="relationship rel-product" data-filter="Product" d="M300 406 C350 406 352 322 390 310"/>
-          <path class="relationship rel-customer" data-filter="Customer" d="M700 406 C650 406 648 322 610 310"/>
+          <path class="relationship rel-date" data-filter="Date" d="M285 170 C330 180 350 235 377 250"/>
+          <path class="relationship rel-region" data-filter="Region" d="M715 170 C670 180 650 235 623 250"/>
+          <path class="relationship rel-product" data-filter="Product" d="M280 392 C330 382 350 325 377 310"/>
+          <path class="relationship rel-customer" data-filter="Customer" d="M720 392 C670 382 650 325 623 310"/>
         </svg>
         <span class="relationship-label label-date" data-filter="Date">DateKey -> OrderDateKey</span>
         <span class="relationship-label label-region" data-filter="Region">RegionKey -> RegionKey</span>

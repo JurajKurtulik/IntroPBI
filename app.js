@@ -139,8 +139,17 @@ const rawRows = [
   ['#1004','2026/07/03','$ 18,450','East - Enterprise','ok'],
   ['#1005','2026/07/04','$ 31,700','South - Retail','ok']
 ];
+const regionManagers = {North:'A. Novak', West:'M. Chen', East:'L. Silva', South:'P. Rossi', Unknown:'Unmatched'};
 function renderClean(step=0){
-  const body = $('#cleanRows'); body.innerHTML = '';
+  const head = $('#cleanHead');
+  const body = $('#cleanRows');
+  body.innerHTML = '';
+  const headers = step >= 5
+    ? ['Order','Date','Sales','Region','Segment','Region Manager']
+    : step >= 4
+      ? ['Order','Date','Sales','Region','Segment']
+      : ['Order','Date','Sales','Region','Noise'];
+  head.innerHTML = `<tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>`;
   const rows = step >= 3 ? rawRows.filter(r => r[2] !== '$ 0') : rawRows;
   for(const r of rows){
     const values = [...r];
@@ -148,15 +157,18 @@ function renderClean(step=0){
       values[1] = values[1] === 'bad date' ? 'Invalid' : values[1].replaceAll('/','-');
       values[2] = values[2].replace('$ ','$');
     }
-    if(step >= 4 && values[3].includes(' - ')){
-      const [region, segment] = values[3].split(' - ');
-      values[3] = `${region}<small>Segment: ${segment}</small>`;
+    let output = values;
+    if(step >= 4){
+      const [region, segment = 'Unassigned'] = r[3].includes(' - ') ? r[3].split(' - ') : [r[3], 'Unassigned'];
+      output = [r[0], values[1], values[2], region, segment];
+      if(step >= 5) output.push(regionManagers[region] || 'Unmatched');
     }
-    if(step >= 5) values[0] = values[0] + ' · Product matched';
     const tr = document.createElement('tr');
-    values.forEach((v, i) => {
+    output.forEach((v, i) => {
       const td = document.createElement('td'); td.innerHTML = v;
-      if(step >= 1 && i === 4) td.className = 'hidden-cell';
+      if(step >= 1 && step < 4 && i === 4) td.className = 'hidden-cell';
+      if(step >= 4 && (i === 3 || i === 4)) td.classList.add('split-cell');
+      if(step >= 5 && i === 5) td.classList.add('merge-cell');
       tr.appendChild(td);
     });
     body.appendChild(tr);
