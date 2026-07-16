@@ -179,7 +179,9 @@ const filterText = {
 };
 $$('.schema-node').forEach(btn => btn.addEventListener('click', () => {
   $$('.schema-node').forEach(b => b.classList.remove('active'));
+  $$('.relationship,.relationship-label').forEach(el => el.classList.remove('active'));
   btn.classList.add('active');
+  $$(`.relationship[data-filter="${btn.dataset.filter}"],.relationship-label[data-filter="${btn.dataset.filter}"]`).forEach(el => el.classList.add('active'));
   $('#modelCallout').textContent = filterText[btn.dataset.filter];
 }));
 
