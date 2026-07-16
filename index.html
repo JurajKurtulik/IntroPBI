@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction to Power BI · Live Scroll Presentation</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="progress"><span></span></div>
+  <nav class="side-nav" aria-label="Slide navigation">
+    <a href="#hero" class="active" data-label="Intro"></a>
+    <a href="#agenda" data-label="Agenda"></a>
+    <a href="#big-picture" data-label="Big picture"></a>
+    <a href="#family" data-label="Family"></a>
+    <a href="#journey" data-label="Journey"></a>
+    <a href="#connect" data-label="Connect"></a>
+    <a href="#clean" data-label="Clean"></a>
+    <a href="#model" data-label="Model"></a>
+    <a href="#dax" data-label="DAX"></a>
+    <a href="#visualize" data-label="Visualize"></a>
+    <a href="#share" data-label="Share"></a>
+  </nav>
+
+  <main>
+    <section id="hero" class="slide hero" data-title="Intro">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><img src="assets/icons/powerbi.png" alt="Power BI icon"> MICROSOFT POWER BI</div>
+        <h1>Introduction to <span>Power BI</span></h1>
+        <p class="lead">From raw data to decisions — an end-to-end tour.</p>
+        <div class="presenter-line">
+          <strong>Juraj Kurtulik</strong><span>Solutions Architect · Microsoft CoE, TD SYNNEX</span>
+        </div>
+        <div class="scroll-hint">Scroll to start the tour <span>↓</span></div>
+      </div>
+      <div class="hero-visual reveal delay-1" aria-label="Animated Power BI data visual">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="data-stage" data-tilt>
+          <div class="glass-dashboard">
+            <div class="dash-top"><span></span><span></span><span></span></div>
+            <div class="kpis"><b>$1.42M</b><b>+18.7%</b><b>94%</b></div>
+            <div class="mini-bars"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="mini-line"><svg viewBox="0 0 360 110"><path d="M10 80 C 50 30, 90 70, 130 45 S 210 10, 250 42 S 320 88, 350 28"/></svg></div>
+          </div>
+          <div class="floating-pbi"><img src="assets/icons/powerbi.png" alt="Power BI logo"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="agenda" class="slide agenda">
+      <div class="slide-heading reveal">
+        <span class="chapter">01 · AGENDA</span>
+        <h2>What we'll cover today</h2>
+      </div>
+      <div class="agenda-grid reveal delay-1">
+        <article class="agenda-panel">
+          <div class="time">~15 min · slides</div>
+          <h3>Part 1 · The Foundation</h3>
+          <ul>
+            <li>What Power BI really is</li>
+            <li>Desktop, Service, Mobile</li>
+            <li>The data journey, end to end</li>
+            <li>Power Query, model & DAX</li>
+            <li>Visuals, interactivity & sharing</li>
+          </ul>
+        </article>
+        <article class="agenda-panel hot">
+          <div class="time">~35 min · hands-on</div>
+          <h3>Part 2 · Live demo</h3>
+          <ul>
+            <li>Connect to a live source</li>
+            <li>Clean it with Power Query</li>
+            <li>Build a model & DAX measure</li>
+            <li>Design interactive visuals</li>
+            <li>Publish & share to the cloud</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="big-picture" class="slide big-picture">
+      <div class="slide-heading reveal">
+        <span class="chapter">02 · THE BIG PICTURE</span>
+        <h2>More than a chart tool</h2>
+        <p>Power BI is an end-to-end platform to connect, clean, model, visualize and share data.</p>
+      </div>
+      <div class="journey-chooser reveal delay-1" role="group" aria-label="Power BI big picture journey">
+        <button class="journey-step active" data-step="connect"><img src="assets/icons/database-file.png" alt="">Connect</button>
+        <button class="journey-step" data-step="shape"><img src="assets/icons/powerquery.png" alt="">Shape</button>
+        <button class="journey-step" data-step="model"><img src="assets/icons/model.png" alt="">Model</button>
+        <button class="journey-step" data-step="visualize"><img src="assets/icons/visuals.png" alt="">Visualize</button>
+        <button class="journey-step" data-step="share"><img src="assets/icons/publish.png" alt="">Share</button>
+      </div>
+      <div class="big-card reveal delay-2" data-tilt>
+        <div class="big-icon"><img id="bigStepIcon" src="assets/icons/database-file.png" alt=""></div>
+        <div>
+          <h3 id="bigStepTitle">Connect the data</h3>
+          <p id="bigStepText">Power BI starts by connecting to files, databases, SaaS platforms and APIs — not by drawing the first chart.</p>
+        </div>
+        <div class="pulse-ring"></div>
+      </div>
+    </section>
+
+    <section id="family" class="slide family">
+      <div class="slide-heading reveal">
+        <span class="chapter">03 · WHERE YOU'LL USE IT</span>
+        <h2>One product, three places</h2>
+      </div>
+      <div class="product-shell reveal delay-1">
+        <div class="product-tabs" role="tablist" aria-label="Power BI products">
+          <button class="product-tab active" data-product="desktop"><img src="assets/icons/powerbi.png" alt="">Desktop</button>
+          <button class="product-tab" data-product="service"><img src="assets/icons/publish-powerbi.png" alt="">Service</button>
+          <button class="product-tab" data-product="mobile"><img src="assets/icons/mobile.png" alt="">Mobile</button>
+        </div>
+        <div class="product-stage" data-tilt>
+          <div class="device device-desktop active" data-device="desktop">
+            <div class="screen"><div class="chart-row"><i></i><i></i><i></i></div><div class="matrix-lines"></div></div>
+          </div>
+          <div class="device device-cloud" data-device="service"><div class="cloud-shape"></div><div class="server-bars"><i></i><i></i><i></i></div></div>
+          <div class="device device-phone" data-device="mobile"><div class="phone-screen"><div></div><div></div><div></div></div></div>
+        </div>
+        <div class="product-copy">
+          <h3 id="productTitle">Power BI Desktop</h3>
+          <p id="productText">Where reports are built: connect, shape, model, and design your report in a free Windows app.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey" class="slide journey">
+      <div class="slide-heading reveal">
+        <span class="chapter">04 · HOW IT WORKS</span>
+        <h2>The data journey</h2>
+        <p>Everything follows this path — and the demo walks it end to end.</p>
+      </div>
+      <div class="pipeline reveal delay-1" aria-label="Data journey pipeline">
+        <div class="pipe-track"></div>
+        <div class="pipe-glow"></div>
+        <div class="pipe-node"><img src="assets/icons/database-file.png" alt=""><b>Sources</b><span>Where data lives</span></div>
+        <div class="pipe-node"><img src="assets/icons/powerbi.png" alt=""><b>Connect</b><span>Get Data</span></div>
+        <div class="pipe-node"><img src="assets/icons/powerquery.png" alt=""><b>Shape</b><span>Power Query</span></div>
+        <div class="pipe-node"><img src="assets/icons/model.png" alt=""><b>Model</b><span>Relationships + DAX</span></div>
+        <div class="pipe-node"><img src="assets/icons/visuals.png" alt=""><b>Visualize</b><span>Reports</span></div>
+        <div class="pipe-node"><img src="assets/icons/publish.png" alt=""><b>Share</b><span>Publish</span></div>
+      </div>
+    </section>
+
+    <section id="connect" class="slide connect">
+      <div class="slide-heading reveal">
+        <span class="chapter">05 · STEP 1 · CONNECT</span>
+        <h2>Getting your data in</h2>
+        <p>Power BI connects to almost anything.</p>
+      </div>
+      <div class="connect-layout reveal delay-1">
+        <div class="source-cloud" data-tilt>
+          <button class="source active" data-source="Excel & CSV"><img src="assets/icons/excel.png" alt="Excel icon"><span>Excel & CSV</span></button>
+          <button class="source" data-source="SQL & databases"><img src="assets/icons/sql.png" alt="SQL icon"><span>SQL & DBs</span></button>
+          <button class="source" data-source="SharePoint & files"><img src="assets/icons/sharepoint.png" alt="SharePoint icon"><span>SharePoint</span></button>
+          <button class="source" data-source="Web & APIs"><img src="assets/icons/web.png" alt="Web icon"><span>Web & APIs</span></button>
+          <button class="source" data-source="Dynamics 365"><img src="assets/icons/dynamics.png" alt="Dynamics 365 icon"><span>Dynamics 365</span></button>
+          <button class="source" data-source="Salesforce"><img src="assets/icons/salesforce.png" alt="Salesforce icon"><span>Salesforce</span></button>
+        </div>
+        <div class="mode-card">
+          <h3 id="sourceTitle">Excel & CSV</h3>
+          <p>Select a source and choose how the report should read it.</p>
+          <div class="mode-switch" role="group" aria-label="Connection mode">
+            <button class="mode active" data-mode="import"><img src="assets/icons/import.png" alt="">Import</button>
+            <button class="mode" data-mode="direct"><img src="assets/icons/directquery.png" alt="">DirectQuery</button>
+          </div>
+          <div class="mode-description" id="modeDescription">A copy of the data is loaded into Power BI. It is fast and fully featured; refresh to update.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="clean" class="slide clean">
+      <div class="slide-heading reveal">
+        <span class="chapter">06 · STEP 2 · CLEAN</span>
+        <h2>Power Query — clean it once, forever</h2>
+        <p>Clickable steps rerun automatically on each refresh.</p>
+      </div>
+      <div class="query-lab reveal delay-1">
+        <div class="messy-table" aria-label="Interactive messy data table">
+          <table>
+            <thead><tr><th>Order</th><th>Date</th><th>Sales</th><th>Region</th><th>Noise</th></tr></thead>
+            <tbody id="cleanRows"></tbody>
+          </table>
+        </div>
+        <div class="steps-panel">
+          <h3>Applied Steps</h3>
+          <button data-clean-step="0" class="clean-step active">Source</button>
+          <button data-clean-step="1" class="clean-step">Removed Columns</button>
+          <button data-clean-step="2" class="clean-step">Changed Type</button>
+          <button data-clean-step="3" class="clean-step">Filtered Rows</button>
+          <button data-clean-step="4" class="clean-step">Split Column</button>
+          <button data-clean-step="5" class="clean-step">Merged Queries</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="model" class="slide model">
+      <div class="slide-heading reveal">
+        <span class="chapter">07 · STEP 3 · MODEL</span>
+        <h2>The model — where tables talk</h2>
+        <p>Relationships turn separate spreadsheets into one connected model that answers questions together.</p>
+      </div>
+      <div class="schema-stage reveal delay-1" data-tilt>
+        <svg class="schema-lines" viewBox="0 0 900 540" aria-hidden="true">
+          <path d="M450 270 L190 110"/><path d="M450 270 L710 110"/><path d="M450 270 L180 410"/><path d="M450 270 L720 410"/>
+        </svg>
+        <button class="schema-node fact active" data-filter="All"><b>Sales</b><span>fact table</span></button>
+        <button class="schema-node date" data-filter="Date"><b>Date</b><span>dimension</span></button>
+        <button class="schema-node region" data-filter="Region"><b>Region</b><span>dimension</span></button>
+        <button class="schema-node product" data-filter="Product"><b>Product</b><span>dimension</span></button>
+        <button class="schema-node customer" data-filter="Customer"><b>Customer</b><span>dimension</span></button>
+        <div class="model-callout" id="modelCallout">Click a dimension to see how filters flow into Sales.</div>
+      </div>
+    </section>
+
+    <section id="dax" class="slide dax">
+      <div class="slide-heading reveal">
+        <span class="chapter">08 · STEP 4 · CALCULATE</span>
+        <h2>DAX — formulas that make data smart</h2>
+        <p>Measures compute on the fly and react to whatever you click or filter.</p>
+      </div>
+      <div class="dax-layout reveal delay-1">
+        <div class="code-card">
+          <div class="code-top"><span></span><span></span><span></span><b>DAX measures</b></div>
+          <pre><code><span class="code-name">Total Sales</span> = SUM( Financials[Sales] )
+
+<span class="code-name">YoY Growth %</span> =
+    DIVIDE(
+        [Total Sales] - [Sales LY],
+        [Sales LY]
+    )</code></pre>
+        </div>
+        <div class="dax-results">
+          <button class="dax-filter active" data-dax="all">All data</button>
+          <button class="dax-filter" data-dax="europe">Europe</button>
+          <button class="dax-filter" data-dax="premium">Premium products</button>
+          <div class="result-card"><span>Total Sales</span><strong id="daxTotal">$1.42M</strong></div>
+          <div class="result-card"><span>YoY Growth</span><strong id="daxGrowth">+18.7%</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="visualize" class="slide visualize">
+      <div class="slide-heading reveal">
+        <span class="chapter">09 · STEP 5 · VISUALIZE</span>
+        <h2>Visuals that respond</h2>
+        <p>Click one visual and the rest cross-filter. Drill, hover, and use slicers to find answers.</p>
+      </div>
+      <div class="report-demo reveal delay-1">
+        <div class="report-top">
+          <div class="report-card"><span>Revenue</span><b id="revKpi">$1.42M</b></div>
+          <div class="report-card"><span>Orders</span><b id="orderKpi">8,420</b></div>
+          <div class="report-card"><span>Margin</span><b id="marginKpi">24.8%</b></div>
+        </div>
+        <div class="slicers">
+          <button class="slicer active" data-region="All">All</button>
+          <button class="slicer" data-region="North">North</button>
+          <button class="slicer" data-region="South">South</button>
+          <button class="slicer" data-region="East">East</button>
+          <button class="slicer" data-region="West">West</button>
+        </div>
+        <div class="charts">
+          <div class="chart-card"><canvas id="barChart" width="520" height="320"></canvas></div>
+          <div class="chart-card"><canvas id="lineChart" width="520" height="320"></canvas></div>
+          <div class="visual-icons">
+            <img src="assets/icons/bar.png" alt="Bar chart icon"><img src="assets/icons/line.png" alt="Line chart icon"><img src="assets/icons/pie.png" alt="Pie chart icon"><img src="assets/icons/maps.png" alt="Map icon"><img src="assets/icons/matrix.png" alt="Matrix icon"><img src="assets/icons/gauge.png" alt="Gauge icon">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="share" class="slide share">
+      <div class="slide-heading reveal">
+        <span class="chapter">10 · STEP 6 · SHARE</span>
+        <h2>Build once, share everywhere</h2>
+        <p>Publish to the Service, organize in workspaces, refresh automatically, and protect with row-level security.</p>
+      </div>
+      <div class="share-stage reveal delay-1">
+        <button class="share-node active" data-share="publish"><img src="assets/icons/publish-powerbi.png" alt=""><b>Publish</b><span>One click to the cloud</span></button>
+        <button class="share-node" data-share="workspace"><img src="assets/icons/workspace.png" alt=""><b>Workspaces & apps</b><span>Distribute to teams</span></button>
+        <button class="share-node" data-share="refresh"><img src="assets/icons/refresh.png" alt=""><b>Scheduled refresh</b><span>Data stays current</span></button>
+        <button class="share-node" data-share="security"><img src="assets/icons/security.png" alt=""><b>Row-level security</b><span>Only the right data</span></button>
+        <div class="share-cloud" data-tilt><img id="shareIcon" src="assets/icons/publish-powerbi.png" alt=""><h3 id="shareTitle">Publish to the Service</h3><p id="shareText">Your report moves from Desktop to the cloud, ready for collaboration and consumption.</p></div>
+      </div>
+      <div class="demo-cta reveal delay-2">
+        <span>Now let's build one — live.</span>
+        <strong>Live demo · ~35 minutes</strong>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
