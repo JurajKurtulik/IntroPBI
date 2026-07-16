@@ -29,6 +29,39 @@ const sectionObserver = new IntersectionObserver(entries => {
 }, {threshold:.55});
 sections.forEach(s => sectionObserver.observe(s));
 
+function currentSectionIndex(){
+  const center = window.scrollY + window.innerHeight / 2;
+  let best = 0;
+  let bestDistance = Infinity;
+  sections.forEach((section, index) => {
+    const sectionCenter = section.offsetTop + section.offsetHeight / 2;
+    const distance = Math.abs(center - sectionCenter);
+    if(distance < bestDistance){
+      best = index;
+      bestDistance = distance;
+    }
+  });
+  return best;
+}
+
+function goToSection(index){
+  const target = sections[Math.max(0, Math.min(sections.length - 1, index))];
+  if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+window.addEventListener('keydown', (event) => {
+  const tag = event.target.tagName;
+  if(tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || event.target.isContentEditable) return;
+  if(event.key === 'ArrowDown' || event.key === 'PageDown'){
+    event.preventDefault();
+    goToSection(currentSectionIndex() + 1);
+  }
+  if(event.key === 'ArrowUp' || event.key === 'PageUp'){
+    event.preventDefault();
+    goToSection(currentSectionIndex() - 1);
+  }
+});
+
 // Mouse tilt for 3D moments
 $$('[data-tilt]').forEach(card => {
   card.addEventListener('pointermove', (e) => {
